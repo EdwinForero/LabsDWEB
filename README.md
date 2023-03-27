@@ -1,4 +1,4 @@
-# LabsDWEB
+# Labs Desarrollo WEB
 
 Vhost1: Lab apache2, enviar un correo con python al pulsar un botón en el form HTML.
 

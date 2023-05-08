@@ -13,7 +13,7 @@ date_string = now.strftime("%Y-%m-%d %H:%M:%S")
 #Users
 sender = "edwinmenfor2000@gmail.com"
 password = "qayzjnidnubyjchv"
-receiver = "edwin-forero@upc.edu.co"
+receiver = "davidforespi34@gmail.com"
 
 #Content
 subject = "DWEB email"

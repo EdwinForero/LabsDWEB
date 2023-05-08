@@ -6,7 +6,7 @@ var y1_data = []; // Array para los MB enviados
 var ctx = document.getElementById('myChart').getContext('2d');
 
 var data1 = {
-    label: "MB recibidos",
+    label: "kB recibidos",
     data: y_data,
     backgroundColor: 'rgba(255, 99, 132, 0.2)',
     borderColor: 'rgba(255, 99, 132, 1)',
@@ -15,7 +15,7 @@ var data1 = {
 
 // Datos del segundo conjunto de datos (línea)
 var data2 = {
-    label: "MB enviados",
+    label: "kB enviados",
     data: y1_data,
     type: 'line',
     fill: true,
@@ -44,18 +44,18 @@ var config = {
 	            },
 		    ticks: {
 			min: 0,
-			max: 10		    
+			max: 10
 		    }
 	        }],
 	        yAxes: [{
 	            ticks: {
 	                min: 0,
-			max: 400,
-			stepSize: 40
+			max: 4000,
+			stepSize: 400
 	            },
 	            scaleLabel: {
 	                display: true,
-	                labelString: 'Megabytes'
+	                labelString: 'kilobytes'
 	            }
 	        }]
 	}
@@ -66,7 +66,7 @@ var config = {
 // Agregar valores a la gráfica
 function updateTX() {
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', 'DWEB_tx.txt', true);
+	xhr.open('GET', 'sDWEB_tx.txt', true);
 	xhr.onreadystatechange = function() {
 	  if (xhr.readyState === 4 && xhr.status === 200) {
 	    let contenido = xhr.responseText;
@@ -78,7 +78,7 @@ function updateTX() {
 	      	
 		y1_data.push(tx)
 
-	      	//console.log('tx ',t_tx, tx);
+	      	console.log('tx ',t_tx, tx);
 	    }
 	  }
 	};
@@ -89,7 +89,7 @@ function updateTX() {
 // Agregar valores a la gráfica
 function updateRX() {
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', 'DWEB_rx.txt', true);
+	xhr.open('GET', 'sDWEB_rx.txt', true);
 	xhr.onreadystatechange = function() {
 	  if (xhr.readyState === 4 && xhr.status === 200) {
 	    let contenido = xhr.responseText;
@@ -102,7 +102,7 @@ function updateRX() {
 		x_data.push(t_rx)
 		y_data.push(rx)
 
-	      	//console.log(t_rx, rx);
+	      	console.log(t_rx, rx);
 	    }
 	  }
 	};
@@ -112,18 +112,21 @@ function updateRX() {
 
 function updateChart(){
 	// Esperar 1 segundo antes de crear el gráfico
+	
 	setTimeout(function() {
 		// Crear el gráfico
-		var myChart = new Chart(document.getElementById('myChart'), config);
-	}, 200);
+		updateRX()
+		updateTX()		
+	var myChart = new Chart(document.getElementById('myChart'), config);
+	}, 500);
 }
 
 //setInterval(updateRX(),4000)
 //setInterval(updateTX(),4000)
 
 //Intentar que cargue la tabla
-$(document).ready(function() {
-  updateRX();
-  updateTX();
+function graficar(){
   updateChart();
-});
+}
+
+setInterval(graficar, 2000)

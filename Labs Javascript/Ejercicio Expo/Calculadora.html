@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora</title>
+</head>
+<body>
+	<p>Grupo nginx</p>
+	<form action="">
+		<input type="text" id="numero1">
+		<input type="text" id="numero2"><br>
+		<input type="button" value="Sumar" id="Sumar">
+		<input type="button" value="Restar" id="Restar">
+		<input type="button" value="Multiplicacion" id="Multiplicacion">
+		<input type="button" value="Division" id="Divion">
+		<input type="button" value="Modulo" id="Modulo">
+	</form>
+
+	<div id="resultado" class="resultado">
+		<p id="contenido"></p>
+	</div>
+
+	<script type="text/javascript">
+
+		var btSumar = document.getElementById("Sumar");
+		var btRestar = document.getElementById("Restar");
+		var btMulti = document.getElementById("Multiplicacion");
+		var btDivion = document.getElementById("Divion");
+		var btModulo = document.getElementById("Modulo");
+
+		var suma = function () {
+			var numero1 = parseInt(document.getElementById("numero1").value);
+			var numero2 = parseInt(document.getElementById("numero2").value);
+			var resultado = numero1 + numero2;
+			remplResult(resultado);
+		}
+
+		var resta = function () {
+			var numero1 = parseInt(document.getElementById("numero1").value);
+			var numero2 = parseInt(document.getElementById("numero2").value);
+			var resultado = numero1 - numero2;
+			remplResult(resultado);
+		}
+
+		var multiplicacion = function () {
+			var numero1 = parseInt(document.getElementById("numero1").value);
+			var numero2 = parseInt(document.getElementById("numero2").value);
+			var resultado = numero1 * numero2;
+			remplResult(resultado);
+		}
+
+		var division = function () {
+			var numero1 = parseInt(document.getElementById("numero1").value);
+			var numero2 = parseInt(document.getElementById("numero2").value);
+			var resultado = numero1 / numero2;
+			remplResult(resultado);
+		}
+
+		var modulo = function () {
+			var numero1 = parseInt(document.getElementById("numero1").value);
+			var numero2 = parseInt(document.getElementById("numero2").value);
+			var resultado = numero1 % numero2;
+			remplResult(resultado);
+		}
+
+		function remplResult(result) {
+			var elemP = document.getElementById('contenido');
+			elemP.textContent= "El resultado es: " + result;
+		}
+
+		btSumar.addEventListener('click', suma);
+		btRestar.addEventListener('click', resta);
+		btMulti.addEventListener('click', multiplicacion);
+		btDivion.addEventListener('click', division);
+		btModulo.addEventListener('click', modulo);
+
+	</script>
+</body>
+</html>
